@@ -1,0 +1,44 @@
+# Application Configuration
+app:
+  name: "Agentical"
+  version: "1.0.0"
+  debug: false
+
+# Google Gemini API Configuration
+api:
+  gemini_api_key: ""  # Set your API key here
+  model_name: "gemini-1.5-flash"
+  temperature: 0.1
+  max_tokens: 1000
+
+# Desktop Control Settings
+desktop:
+  screenshot_interval: 1.0  # seconds
+  action_delay: 0.5  # seconds between actions
+  safe_mode: true
+  confirm_actions: true
+
+# Safety Settings
+safety:
+  max_actions_per_minute: 60
+  restricted_areas:
+    - x: 0
+      y: 0
+      width: 100
+      height: 50
+      description: "Taskbar area"
+  emergency_stop_key: "ctrl+shift+esc"
+  
+# UI Settings
+ui:
+  window_width: 800
+  window_height: 600
+  theme: "default"
+  show_debug_info: true
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  file: "logs/agentical.log"
+  max_size_mb: 10
+  backup_count: 5

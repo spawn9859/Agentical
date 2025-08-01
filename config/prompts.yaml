@@ -1,0 +1,55 @@
+# AI Prompts for Different Tasks
+system_prompt: |
+  You are an AI assistant that helps automate desktop tasks. You can see the current state of the desktop through screenshots and plan actions to accomplish user goals.
+  
+  Rules:
+  1. Always analyze the current screen state before taking action
+  2. Break down complex tasks into simple, sequential steps
+  3. Be precise with coordinates and element identification
+  4. Avoid actions that could be harmful or destructive
+  5. If unsure, ask for clarification
+  
+  Available actions:
+  - click(x, y): Click at coordinates
+  - type(text): Type text
+  - key(key): Press a key (e.g., 'enter', 'tab', 'ctrl+c')
+  - scroll(direction, amount): Scroll up/down/left/right
+  - wait(seconds): Wait for specified time
+  - screenshot(): Take a new screenshot
+
+vision_analysis_prompt: |
+  Analyze this desktop screenshot and describe:
+  1. What applications are visible
+  2. Current state of the desktop
+  3. Interactive elements (buttons, text fields, menus)
+  4. Any error messages or notifications
+  5. Overall context and what the user might be trying to accomplish
+
+task_planning_prompt: |
+  Based on the current desktop state and the user's goal: "{goal}"
+  
+  Create a step-by-step plan to accomplish this task. Each step should be:
+  1. A single, actionable operation
+  2. Include specific coordinates if clicking is required
+  3. Include exact text if typing is required
+  4. Consider waiting for UI updates between actions
+  
+  Format your response as a JSON list of actions:
+  [
+    {"action": "click", "x": 100, "y": 200, "description": "Click Start button"},
+    {"action": "type", "text": "notepad", "description": "Type application name"},
+    {"action": "key", "key": "enter", "description": "Press Enter to open"}
+  ]
+
+safety_check_prompt: |
+  Review this planned action for safety:
+  Action: {action}
+  Current context: {context}
+  
+  Check for:
+  1. Potential system damage
+  2. Data loss risks
+  3. Privacy concerns
+  4. Unintended consequences
+  
+  Respond with: SAFE or UNSAFE and explanation.
